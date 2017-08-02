@@ -1,0 +1,53 @@
+\documentclass[10pt,a5paper]{article}
+\usepackage[print]{booklet}
+\setpdftargetpages
+\usepackage{forloop}
+\source{\magstep0}{\paperwidth}{\paperheight}
+\target{\magstep0}{24cm}{\paperheight} 
+
+\usepackage{calc}
+
+\newcounter{entrynumber}
+\newcounter{daynumber}
+\newcounter{weeknumber}
+
+\usepackage{wasysym}
+
+
+\title{Carnet allaitement Coline}
+\date{}
+
+
+\begin{document}
+
+\maketitle
+\cleardoublepage
+
+
+\newcommand{\allaitement}{
+\section*{Jour \arabic{daynumber} Semaine \arabic{weeknumber}}
+
+\begin{tabular}{|l|c|*{4}{c|} p{3cm} |}
+\hline
+\# & Heure & Sein & Durée & Urine & Selles & Commentaire\\
+\hline
+\hline
+\forloop[1]{entrynumber}{1}{\value{entrynumber} < 16} {
+	\arabic{entrynumber} & & & & & & \\
+	\hline 
+}
+16 & & & & & & \\
+\hline
+\end{tabular}
+
+\section*{Température: \hspace{20pt} °C \hspace{50pt} Bain: \Square} 
+\section*{Commentaires:}
+\clearpage
+}
+
+\forloop[1]{daynumber}{1}{\value{daynumber} < 33} {
+ \setcounter{weeknumber}{1 + (\value{daynumber} / 7)}
+ \allaitement
+}
+
+\end{document}
