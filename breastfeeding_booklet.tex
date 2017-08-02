@@ -1,32 +1,40 @@
 \documentclass[10pt,a5paper]{article}
+
+% For a5 booklet
 \usepackage[print]{booklet}
 \setpdftargetpages
-\usepackage{forloop}
 \source{\magstep0}{\paperwidth}{\paperheight}
 \target{\magstep0}{24cm}{\paperheight} 
 
+\usepackage{forloop}
+
+% For operation on counter
 \usepackage{calc}
 
 \newcounter{entrynumber}
 \newcounter{daynumber}
 \newcounter{weeknumber}
-\newcounter{startdaynumber}
-\setcounter{startdaynumber}{1}
 
+% For square sign
 \usepackage{wasysym}
 
 
 \title{Carnet allaitement Coline}
 \date{}
+\author{}
 
 
 \begin{document}
 
 \maketitle
-\cleardoublepage
+\clearpage
 
+% Necessary to skip a page as \cleardoublepage did not work
+\ 
+\newpage
 
-\newcommand{\allaitement}{
+% New command for a day of breastfeeding
+\newcommand{\breastfeeding}{
 \section*{Jour \arabic{daynumber} Semaine \arabic{weeknumber}}
 
 \begin{tabular}{|l|c|*{4}{c|} p{3cm} |}
@@ -47,9 +55,10 @@
 \clearpage
 }
 
-\forloop[1]{daynumber}{\value{startdaynumber}}{\value{daynumber} < (\value{startdaynumber} + 33)} {
+% Loop on the days
+\forloop[1]{daynumber}{1}{\value{daynumber} < 29} {
  \setcounter{weeknumber}{1 + (\value{daynumber} / 7)}
- \allaitement
+ \breastfeeding
 }
 
 \end{document}
